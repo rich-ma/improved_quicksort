@@ -25,18 +25,18 @@ class QuickSort
 
   def self.partition(array, start, length, &prc)
     prc ||= proc { |x, y| x <=> y }
-    pivot = arr[start]
-    left = start + 1
+    pivot = array[start]
+    left = start
     
     1.upto(length - 1) do |i|
-      if prc.call(pivot, arr[start + i]) == 1
-        arr[start + i], arr[left] = arr[left], arr[start + i]
+      if prc.call(pivot, array[start + i]) == 1
+        array[start + i], array[left + 1] = array[left + 1], array[start + i]
         left += 1
       end
     end
     # swapping pivot and last 'left' item
-    arr[start], arr[left - 1] = arr[left - 1], arr[start]
-    left - 1
+    array[start], array[left] = array[left], array[start]
+    left
   end
 
 end
