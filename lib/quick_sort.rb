@@ -20,11 +20,24 @@ class QuickSort
     # pivot = array[0]
     pivot = QuickSort.partition(array, start, length, &prc)
 
-    
+    left = QuickSort.sort2!(array, start, pivot - start, &prc)
+    right = QuickSort.sort2!(array, pivot + 1, length - (pivot - start) - 1, &prc)
+    array
   end
 
   def self.partition(array, start, length, &prc)
     prc ||= proc { |x, y| x <=> y }
+    if length > 2
+      first = array[start]
+      last = array[start + length - 1]
+      mid = array[(start + length)/2]
+      if mid <= first && mid >= last
+        array[start], array[(start + length)/2] = array[(start + length)/2], array[start]
+      elsif last <= first && last >= mid
+        array[start], array[(start + length - 1)] = array[(start + length - 1)], array[start]
+      else
+      end
+    end
     pivot = array[start]
     left = start
     
